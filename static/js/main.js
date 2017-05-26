@@ -64,7 +64,7 @@
 				$('#commit_window').html(data);
 
 
-				var commitTable;
+				var commitTable = '';
 				commitTable = "<span><h3>Note: </h3><span>This will also provide a link to see changes made in each previous version.</span></span>";
 				$.each(data, function( index, value ) {
 
