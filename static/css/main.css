@@ -29,6 +29,19 @@
     margin-top: 10px;
     letter-spacing: 2px;
 }
+.row {
+  display: flex;
+  flex-direction: row;
+  margin-right: 1rem;
+}
+.row h3 {
+  color: white;
+  margin-right: 1rem;
+}
+
+#pageTitle {
+  flex: 1;
+}
 .row-content{
     vertical-align: top;
 }
