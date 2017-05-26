@@ -1,0 +1,28 @@
+title: Content Editor
+description: Here is a description
+author: Test McTester
+logo: https://ta1188.github.io/techopts/static/img/byuilogo2.svg
+github: https://github.com/ta1188
+about: About description
+
+baseurl: "https://ta1188.github.io/techopts"
+url: "https://ta1188.github.io/techopts"
+
+allowsearch: true
+
+disqus_shortname: aboutashu
+google_analytics: UA-72862926-1
+
+share:
+  twitter_username: \#
+  fb_appid: 000000000000
+
+
+enableTags: true
+tagarray: []
+
+paginate: 20
+per_page: 20
+paginate_path: "/page:num/"
+markdown: kramdown
+gems: [jekyll-paginate, jekyll-gist]

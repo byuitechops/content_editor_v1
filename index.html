@@ -1,0 +1,44 @@
+---
+layout: default
+title: Content Editor
+---
+<div class="well editor_panel">
+  <div class="editorTools hide" id="editor_tools">
+    <button id="undo"><i class="fa fa-undo" aria-hidden="true"></i></button>
+    <button id="redo"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+    <button id="h1">h1</button>
+    <button id="h2">h2</button>
+    <button class="dropdown-toggle" id="link" data-toggle="dropdown"><i class="fa fa-link" aria-hidden="true"></i></button>
+    <button class="dropdown-toggle" id="image" data-toggle="dropdown"><i class="fa fa-picture-o" aria-hidden="true"></i></button>
+    <button id="bold"><b>B</b></button>
+    <button id="italic"><i>i</i></button>
+    <button id="quote"><i class="fa fa-quote-left" aria-hidden="true"></i></button>
+    <button id="ul"><i class="fa fa-list-ul" aria-hidden="true"></i></button>
+    <button id="ol"><i class="fa fa-list-ol" aria-hidden="true"></i></button>
+    <!-- <button id="help"><i class="fa fa-question-circle" aria-hidden="true"></i></button> -->
+  </div>
+    <textarea id="editor_textarea" class="editor_textarea hide"></textarea>
+    <div id="preview_window"></div>
+    <div id="commit_window" class="commit_window"></div>
+    <div id="settings_window" class="settings_window">
+      <p>This page will allow for settings changes...</p>
+    </div>
+    <div id="save_window" class="settings_window">
+      <h2>Your changes will be saved</h2>
+      <p>This page will show you the portions you have changed and allow you to provide a message (if you would like) for why you are making the change.</p>
+      <br />
+      <p>Once saved, you will then be able to see the saved changes on the initial full screen view.</p>
+    </div>
+    <ul class="dropdown-menu insertLink" role="menu">
+      <li><h3 class="dropdown_title">Insert Link</h3></li>
+      <li><input id="linkURL" type="text" placeholder="Enter URL"/></li>
+      <li><input id="linkText" type="text" placeholder="Link Text (optional)"/></li>
+      <li class="btnLi"><button id="insertLinkBtn" class="insertBtn">Insert</button></li>
+    </ul>
+    <ul class="dropdown-menu insertImage" role="menu">
+      <li><h3 class="dropdown_title">Insert Image</h3></li>
+      <li><input id="imageLink" type="text" placeholder="Enter Image URL"/></li>
+      <li><input id="imageText" type="text" placeholder="Image Text (optional)"/></li>
+      <li class="btnLi"><button id="insertImageBtn" class="insertBtn">Insert</button></li>
+    </ul>
+</div><!-- end #home -->

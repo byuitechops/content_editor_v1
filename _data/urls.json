@@ -1,0 +1,33 @@
+[
+  {
+    "text": "Edit",
+    "url": "/",
+    "icon": "fa-pencil",
+    "layout": "post",
+    "id": "edit"
+  },
+  {
+    "text": "View",
+    "url": "/#",
+    "icon": "fa-eye",
+    "id": "preview"
+  },
+  {
+    "text": "Versions",
+    "url": "/#",
+    "icon": "fa-history",
+    "id": "versions"
+  },
+  {
+    "text": "Settings",
+    "url": "/#",
+    "icon": "fa-cog",
+    "id": "settings"
+  },
+  {
+    "text": "Save",
+    "url": "/#",
+    "icon": "fa-floppy-o",
+    "id": "save"
+  }
+]

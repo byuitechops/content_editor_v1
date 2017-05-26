@@ -1,0 +1,23 @@
+<div class="container main outer body_view_container">
+  <div class="row">
+    <div class="col-md-3 col-xs-12 hide">
+      {% include sidemenu.html %}
+    </div>
+    <div class="col-md-9 col-xs-12 full editor_container">
+      {{ content }}
+      <div class="row hide">
+        <div class="col-md-12 col-xs-12 footer">
+          {% include footer.html %}
+        </div>
+      </div>
+    </div> <!-- end /.col-md-9 -->
+    <!-- <div class="col-md-3 col-xs-12 hide">
+      {% include sidemenu.html %}
+    </div> -->
+    <div >
+      <button type="button" class="initial_edit_btn" id="initial_edit_btn">
+        <i class="fa fa-2x fa-pencil"></i>
+      </button>
+    </div>
+  </div> <!-- end /.row -->
+</div>
