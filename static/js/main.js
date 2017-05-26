@@ -53,7 +53,7 @@
 			$('.current-menu-item').removeClass('current-menu-item');
 			$('#versions').parent().addClass('current-menu-item');
 
-			$.get("https://api.github.com/repos/ta1188/techopts/commits", function(data){
+			$.get("https://api.github.com/repos/byuitechops/byuitechops.github.io/commits", function(data){
 	    }).done(function(data) {
 				$('.editorTools').hide();
 				$('.CodeMirror').hide();
@@ -113,7 +113,7 @@
 
 			$.ajax({
 				type: "PUT",
-				url: 'https://api.github.com/repos/ta1188/techopts/contents/' + file_path,
+				url: 'https://api.github.com/repos/byuitechops/byuitechops.github.io/contents/' + file_path,
 				path: file_path,
 				message: 'This is a test to update via API',
 				content: b64_content,
@@ -146,7 +146,7 @@
 			}, 300);
 		});
 
-		$.get("https://api.github.com/repos/ta1188/techopts/contents", function(data){
+		$.get("https://api.github.com/repos/byuitechops/byuitechops.github.io/contents", function(data){
     }).done(function(data) {
 
 			$.each(data, function( index, value ) {
