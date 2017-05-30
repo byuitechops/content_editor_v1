@@ -1,0 +1,11 @@
+{
+  "name": "byuitechops-github-io",
+  "version": "1.0.0",
+  "description": "This contains the POC for the content editor that uses git/GitHub on the backend, all hosted on GitHub pages.",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+  },
+  "author": "",
+  "license": "MIT"
+}
