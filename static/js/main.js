@@ -64,7 +64,7 @@
 				$('#commit_window').html(data);
 
 
-				var commitTable = '';
+				var commitTable;
 				commitTable = "<span><h3>Note: </h3><span>This will also provide a link to see changes made in each previous version.</span></span>";
 				$.each(data, function( index, value ) {
 
@@ -223,8 +223,10 @@
 		  $(".dropdown-menu").hide();
 			$('#linkURL').val('');
 			$('#linkText').val('');
+			$('#linkTarget').val('');
 			$('#imageLink').val('');
-			$('#imageText').val('');
+			$('#imageAlt').val('');
+			$('#imageTitle').val('');
 		});
 		$( "#undo" ).click(function() {
 			myCodeMirror.undo();
@@ -248,10 +250,19 @@
 		});
 		$( "#insertLinkBtn" ).click(function() {
 			var linkVal;
-			if($('#linkText').val().length > 0) {
+			var hasTarget = false;
+			if ($('#linkTarget').val().length > 0) {
+				hasTarget = true;
+			}
+
+			if($('#linkText').val().length > 0 && !hasTarget) {
 				linkVal = "[" + $('#linkText').val() + "](" + $('#linkURL').val() + ")";
 			} else {
 				linkVal = "<" + $('#linkURL').val() + ">";
+			}
+
+			if (hasTarget) {
+				linkVal = '<a href="' + $('#linkURL').val() + '" target="' + $('#linkTarget').val() + '">' + $('#linkText').val() + '</a>'
 			}
 			insertString(myCodeMirror, linkVal, "link");
 			$(".insertLink").hide();
@@ -265,15 +276,32 @@
 		});
 		$( "#insertImageBtn" ).click(function() {
 			var linkVal;
-			if($('#imageText').val().length > 0) {
-				linkVal = "![" + $('#imageText').val() + "](" + $('#imageLink').val() + " \""+ $('#imageText').val() + "\")";
+			var hasAlt = false;
+			var hasTitle = false;
+
+			//Alt check
+			if($('#imageAlt').val().length > 0) {
+				hasAlt = true;
+			}
+			//Title check
+			if($('#imageTitle').val().length > 0) {
+				hasTitle = true;
+			}
+
+			if(hasAlt && hasTitle) {
+				linkVal = "![" + $('#imageAlt').val() + "](" + $('#imageLink').val() + " \""+ $('#imageTitle').val() + "\")";
+			} else if (hasAlt && !hasTitle){
+				linkVal = "![" + $('#imageAlt').val() + "](" + $('#imageLink').val() + " \"Image\")";
+			} else if (hasTitle && !hasAlt){
+				linkVal = "![Image](" + $('#imageLink').val() + " \"" + $('#imageTitle').val() + "\")";
 			} else {
-				linkVal = "![Image](" + $('#imageLink').val() + " 'Image')";
+				linkVal = "![Image](" + $('#imageLink').val() + " \"Image\")";
 			}
 			insertString(myCodeMirror, linkVal, "link");
 			$(".insertImage").hide();
 			$('#imageLink').val('');
-			$('#imageText').val('');
+			$('#imageAlt').val('');
+			$('#imageTitle').val('');
 		});
 
 		$( "#bold" ).click(function() {
