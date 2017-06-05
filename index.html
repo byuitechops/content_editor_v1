@@ -15,6 +15,7 @@ title: Content Editor
     <button id="quote"><i class="fa fa-quote-left" aria-hidden="true"></i></button>
     <button id="ul"><i class="fa fa-list-ul" aria-hidden="true"></i></button>
     <button id="ol"><i class="fa fa-list-ol" aria-hidden="true"></i></button>
+    <button class="dropdown-toggle" id="tableBtn" data-toggle="dropdown"><i class="fa fa-table" aria-hidden="true"></i></button>
     <!-- <button id="help"><i class="fa fa-question-circle" aria-hidden="true"></i></button> -->
   </div>
     <textarea id="editor_textarea" class="editor_textarea hide"></textarea>
@@ -43,4 +44,28 @@ title: Content Editor
       <li><input id="imageTitle" type="text" placeholder="Image Title (optional)"/></li>
       <li class="btnLi"><button id="insertImageBtn" class="insertBtn">Insert</button></li>
     </ul>
+    <ul class="dropdown-menu addTable" role="menu">
+      <li><h3 class="dropdown_title">Insert Table</h3></li>
+      <li><input id="colNum" type="text" placeholder="Num of Columns"/></li>
+      <li><input id="rowNum" type="text" placeholder="Num of Rows"/></li>
+      <li class="btnLi"><button data-toggle="dropdown" id="createTable" class="dropdown-toggle insertBtn">Generate Table</button></li>
+    </ul>
+    <ul class="dropdown-menu tableContainer" role="menu">
+      <li>
+        <div class="tableHeader">
+          <h3 class="dropdown_title">Table Data</h3>
+          <div class="tableOptions">
+            <button id="addRow"  class="addBtn"><i class="fa fa-plus-circle" aria-hidden="true"></i> Row</button>
+            <button id="addCol" class="addBtn"><i class="fa fa-plus-circle" aria-hidden="true"></i> Col</button>
+          </div>
+          <div class="tableOptions">
+            <button id="killRow" class="killBtn"><i class="fa fa-minus-circle" aria-hidden="true"></i></i> Row</button>
+            <button id="killCol" class="killBtn"><i class="fa fa-minus-circle" aria-hidden="true"></i></i> Col</button>
+          </div>
+        </div>
+      </li>
+      <li><div class="tableSpace"></div></li>
+      <li><div class='insertTable'><button class='insertTableBtn'>Insert Table</button></div></li>
+    </ul>
+
 </div><!-- end #home -->

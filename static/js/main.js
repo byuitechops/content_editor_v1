@@ -219,8 +219,12 @@
 		$(".dropdown-menu").click(function(e) {
 		  e.stopPropagation();
 		});
+		$(".tableContainer").click(function(e) {
+		  e.stopPropagation();
+		});
 		$(document).click(function() {
 		  $(".dropdown-menu").hide();
+			$('.tableContainer').hide();
 			$('#linkURL').val('');
 			$('#linkText').val('');
 			$('#linkTarget').val('');
@@ -246,6 +250,8 @@
 				$('#linkText').val(selection);
 			}
 			$('.insertImage').hide();
+			$('.tableContainer').hide();
+			$('.addTable').hide();
 			$('.insertLink').show();
 		});
 		$( "#insertLinkBtn" ).click(function() {
@@ -265,13 +271,17 @@
 				linkVal = '<a href="' + $('#linkURL').val() + '" target="' + $('#linkTarget').val() + '">' + $('#linkText').val() + '</a>'
 			}
 			insertString(myCodeMirror, linkVal, "link");
+			$(".addTable").hide();
 			$(".insertLink").hide();
+			$('.tableContainer').hide();
 			$('#linkURL').val('');
 			$('#linkText').val('');
 		});
 
 		$( "#image" ).click(function() {
+			$('.addTable').hide();
 			$('.insertLink').hide();
+			$('.tableContainer').hide();
 			$('.insertImage').show();
 		});
 		$( "#insertImageBtn" ).click(function() {
@@ -298,6 +308,8 @@
 				linkVal = "![Image](" + $('#imageLink').val() + " \"Image\")";
 			}
 			insertString(myCodeMirror, linkVal, "link");
+			$(".addTable").hide();
+			$('.tableContainer').hide();
 			$(".insertImage").hide();
 			$('#imageLink').val('');
 			$('#imageAlt').val('');
@@ -319,6 +331,153 @@
 		$( "#ol" ).click(function() {
 			insertString(myCodeMirror,"1. Numbered", "1. ", false);
 		});
+		$( "#tableBtn" ).click(function() {
+			$('.insertLink').hide();
+			$('.insertImage').hide();
+			$('.tableContainer').hide();
+			$('.addTable').show();
+		});
+		$( ".insertTable" ).click(function() {
+			$('.tableContainer').hide();
+			console.log("Inserting table...");
+		});
+		var colNum;
+		var rowNum;
+		var cellIndex;
+		var currentRow;
+		var currentRowNum;
+		$( "#createTable" ).click(function() {
+			$('.addTable').hide();
+			$('.tableSpace').html('');
+			$('.tableContainer').show();
+			colNum = $('#colNum').val();
+			rowNum = $('#rowNum').val();
+			var innerTable = '';
 
+			for (var i = 0; i < rowNum; i++) {
+				innerTable += '<tr>';
+
+				for (var j = 0; j < colNum; j++) {
+					if (i == 0) {
+						innerTable += '<td><input class="cellVal" type="text" placeholder="Column Header (th)" /></td>';
+					} else {
+						innerTable += '<td><input class="cellVal" type="text" /></td>';
+					}
+				}
+
+				innerTable += '</tr>';
+			}
+
+			$('.tableSpace').html("<table class='editTable'>" + innerTable + "</table>");
+
+			//Add event listener to input select
+			$('.cellVal').on('click', function (e) {
+					//FIND COLUMN - Finds cell position
+					   cellIndex = e.target.closest('td').cellIndex
+						 $('.tableOptions').show();
+
+					// FIND ROW
+					currentRow = e.target.closest('tr');
+					currentRowNum = e.target.closest('tr').sectionRowIndex;
+
+			});
+			$('#colNum').val('');
+			$('#rowNum').val('');
+		});
+
+		$('.tableContainer button').on('click', function (e) {
+			e.stopPropagation();
+		});
+		$('.tableContainer').on('click', function () {
+			if(!$('.cellVal').is(':focus')) {
+				$('.tableOptions').hide();
+			}
+		});
+		$('#killRow').on('click', function () {
+			currentRow.remove();
+		});
+		$('#killCol').on('click', function () {
+			$("tr").each(function() {
+				$(this).find('td:eq("' + cellIndex + '")').remove();
+			});
+		});
+		$('#addRow').on('click', function () {
+				var newRow = '<tr>';
+				for (var i = 0; i < $('.editTable').find('tr')[0].cells.length; i++) {
+						newRow += '<td><input class="cellVal" type="text" /></td>';
+				}
+				newRow += '</tr>';
+				// $('.editTable > tr').eq(currentRowNum).after(newRow);
+				$('.editTable').find('tr:eq("' + currentRowNum + '")').after(newRow);
+				// Have to re-setup event listener for new cells
+				$('.cellVal').on('click', function (e) {
+						//FIND COLUMN - Finds cell position
+						   cellIndex = e.target.closest('td').cellIndex
+							 $('.tableOptions').show();
+
+						// FIND ROW
+						currentRow = e.target.closest('tr');
+						currentRowNum = e.target.closest('tr').sectionRowIndex;
+
+				});
+		});
+		$('#addCol').on('click', function() {
+			$("tr").each(function(i) {
+				if (i == 0) {
+					$(this).find('td:eq("' + cellIndex + '")').after('<td><input class="cellVal" type="text" placeholder="Column Header (th)" /></td>');
+				} else {
+					$(this).find('td:eq("' + cellIndex + '")').after('<td><input class="cellVal" type="text" /></td>');
+				}
+			});
+			// Have to re-setup event listener for new cells
+			$('.cellVal').on('click', function (e) {
+					//FIND COLUMN - Finds cell position
+					   cellIndex = e.target.closest('td').cellIndex
+						 $('.tableOptions').show();
+
+					// FIND ROW
+					currentRow = e.target.closest('tr');
+					currentRowNum = e.target.closest('tr').sectionRowIndex;
+
+			});
+		});
+		$('.insertTableBtn').on('click', function() {
+			var totalCols = $('.editTable').find('tr')[0].cells.length;
+			var totalRows = $(".editTable > tbody > tr").length;
+			var mdTable = '';
+
+			for (var i = 0; i < totalRows; i++) {
+				for (var j = 1; j <= totalCols; j++) {
+					var row = $('.editTable').find('tr:eq("' + i + '")')
+
+					if (i == 0) {
+						// handle 'th' row set up
+						mdTable += row.find("td:nth-child(" + j + ") input").val() + ' | ';
+						if (j == totalCols) {
+							mdTable += '\n';
+							for (var h = 1; h <= totalCols; h++) {
+								var inputLength = row.find("td:nth-child(" + j + ") input").val().length;
+								var dashes = '';
+								for (var d = 0; d < inputLength; d++) {
+									dashes += '-';
+								}
+								mdTable += dashes + ' | ';
+								if (h == totalCols) {
+									mdTable += '\n';
+								}
+							}
+						}
+					} else {
+						mdTable += row.find("td:nth-child(" + j + ") input").val() + ' | ';
+						if (j == totalCols) {
+							mdTable += '\n';
+						}
+					}
+				}
+			}
+			$('.tableContainer').hide();
+			insertString(myCodeMirror, mdTable, "link");
+
+		});
 	});
 })(jQuery);

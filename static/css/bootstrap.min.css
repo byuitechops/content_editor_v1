@@ -188,7 +188,13 @@ table {
 }
 
 td, th {
-  padding: 0
+  padding: 1rem;
+  border: 1px solid #bdbdbd;
+}
+
+.editTable td, .editTable th {
+  padding: 0;
+  border: none;
 }
 
 @media print {
@@ -1446,7 +1452,9 @@ table {
 }
 
 th {
-  text-align: left
+  text-align: left;
+  padding: 1rem;
+  border: 1px solid #bdbdbd;
 }
 
 .table {
@@ -3092,6 +3100,10 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
   left: 160px;
   display: none;
 }
+.addTable {
+  left: 450px;
+  display: none;
+}
 
 .dropdown-menu  {
   position: absolute;
@@ -3110,9 +3122,89 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, .175) !important;
-  background-clip: padding-box
+  background-clip: padding-box;
+}
+.tableHeader {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1rem;
+}
+.tableHeader h3 {
+  flex: 1;
+}
+.tableOptions {
+  display: none;
+  margin-left: 3rem;
+}
+.addBtn {
+  background-color:#a5d6a7;
+}
+.killBtn {
+  background-color: #ffab91;
+}
+.addBtn, .killBtn {
+  padding: 2px 10px;
+  border-radius: 5px;
+  border: none;
+}
+.addBtn:hover {
+  background-color:#81c784;
+}
+.killBtn:hover {
+  background-color: #ff8a65;
 }
 
+::-webkit-input-placeholder {
+   font-style: italic;
+}
+:-moz-placeholder {
+   font-style: italic;
+}
+::-moz-placeholder {
+   font-style: italic;
+}
+:-ms-input-placeholder {
+   font-style: italic;
+}
+
+.tableContainer {
+  display: none;
+  width: auto;
+  top: 10px;
+  left: 15px;
+  right: 30px;
+}
+.tableContainer table {
+  width: 100%;
+}
+.insertTableBtn {
+  margin: 0 auto;
+  color: white;
+  background-color: #467CBF;
+  border: none;
+  width: 250px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 1rem;
+  float: right;
+}
+.insertTableBtn:hover {
+  background-color: #355F93;
+}
+.cellVal {
+  border: none;
+  outline: none;
+  border: 1px solid #b0bec5 !important;
+  font-size: 10pt;
+  min-width: 150px;
+  padding: 5px !important;
+}
+.cellVal:focus {
+  border: 1px solid #424242 !important;
+}
+.tableSpace {
+  overflow: scroll;
+}
 .dropdown-menu.pull-right {
   right: 0;
   left: auto
